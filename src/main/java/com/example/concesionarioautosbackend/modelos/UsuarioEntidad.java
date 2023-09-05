@@ -1,8 +1,11 @@
 package com.example.concesionarioautosbackend.modelos;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -23,5 +26,14 @@ public class UsuarioEntidad {
     public UsuarioEntidad(){
 
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<VentasEntidad> ventas;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<CitasEntidad> citas;
 
 }

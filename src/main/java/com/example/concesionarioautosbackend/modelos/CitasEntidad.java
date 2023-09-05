@@ -1,8 +1,11 @@
 package com.example.concesionarioautosbackend.modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,5 +22,12 @@ public class CitasEntidad {
     public CitasEntidad(){
 
     }
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "identificacion", referencedColumnName = "identificacion")
+    private UsuarioEntidad usuario;
+
+
 
 }
